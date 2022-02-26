@@ -39,8 +39,6 @@ public class UserStory4 {
 
         Username_Password.username1(driver);
 
-        WebElement rememberME_button = driver.findElement(By.id("USER_REMEMBER"));
-        rememberME_button.click();
 
         WebElement login = driver.findElement(By.xpath("//input[@class='login-btn']"));
         login.click();
@@ -75,9 +73,6 @@ public class UserStory4 {
     public void test2() {  // Check if user3 see My Profile on Profile button
 
         Username_Password.username2(driver);
-
-        WebElement rememberME_button = driver.findElement(By.id("USER_REMEMBER"));
-        rememberME_button.click();
 
         WebElement login = driver.findElement(By.xpath("//input[@class='login-btn']"));
         login.click();
@@ -114,8 +109,6 @@ public class UserStory4 {
 
         Username_Password.username3(driver);
 
-        WebElement rememberME_button = driver.findElement(By.id("USER_REMEMBER"));
-        rememberME_button.click();
 
         WebElement login = driver.findElement(By.xpath("//input[@class='login-btn']"));
         login.click();
