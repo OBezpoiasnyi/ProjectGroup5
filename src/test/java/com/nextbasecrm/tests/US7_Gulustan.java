@@ -19,6 +19,16 @@ public class US7_Gulustan {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get(ConfigurationReader.getProperty("env"));
 
+
+
+
+
+
+
+
+
+
+
     }
 
 
