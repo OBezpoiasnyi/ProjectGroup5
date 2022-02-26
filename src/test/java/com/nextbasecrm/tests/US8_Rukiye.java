@@ -27,7 +27,7 @@ public class US8_Rukiye {
 
     }
 
-    @org.testng.annotations.Test
+    @Test
     public void crm_login_test() {
         WebElement inputUsername = driver.findElement(By.xpath("//input[@name='USER_LOGIN']"));
         inputUsername.sendKeys("hr14@cybertekschool.com");
@@ -41,7 +41,7 @@ public class US8_Rukiye {
     }
 
     @Test
-    public void chat_and_call_module() throws InterruptedException {
+    public void chat_and_call_module() {
 
         CRM_Utilities.crm_login(driver);
 
