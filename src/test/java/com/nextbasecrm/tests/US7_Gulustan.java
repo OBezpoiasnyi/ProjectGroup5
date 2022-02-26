@@ -1,5 +1,6 @@
 package com.nextbasecrm.tests;
 
+import com.nextbasecrm.utilities.BrowserUtils;
 import com.nextbasecrm.utilities.ConfigurationReader;
 import com.nextbasecrm.utilities.Username_Password;
 import com.nextbasecrm.utilities.WebDriverFactory;
@@ -37,7 +38,7 @@ public class US7_Gulustan {
     }
    @AfterMethod
            public void  tearDown(){
-
+        BrowserUtils.sleep(3);
         driver.close();
    }
 
@@ -45,19 +46,19 @@ public class US7_Gulustan {
 
 
         @Test
-                public void test1() throws InterruptedException {
+                public void test1()  {
 
 
             WebElement pollButton = driver.findElement(By.xpath("//span[.='Poll']/span"));
-            Thread.sleep(2000);
+           BrowserUtils.sleep(3);
             pollButton.click();
 
             WebElement clickOneAnswer=driver.findElement(By.xpath("(//span[@class='bx-vote-block-inp-substitute'])[1]"));
-            Thread.sleep(2000);
+           BrowserUtils.sleep(3);
             clickOneAnswer.click();
 
             WebElement clickVote=driver.findElement(By.xpath("(//button[@class='ui-btn ui-btn-lg ui-btn-primary'])[2]"));
-            Thread.sleep(2000);
+           BrowserUtils.sleep(3);
             clickVote.click();
 
         }
