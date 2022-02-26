@@ -20,9 +20,11 @@ public class US10_Sayad {
 
     @BeforeMethod
     public void setUpMethod() {
+ /*
+        String userName = "marketing15@cydeo.com";
+        String password = "UserUser";
 
-        //String userName = "marketing15@cydeo.com";
-        //String password = "UserUser";
+ */
 
         driver = WebDriverFactory.getDriver(ConfigurationReader.getProperty("browser"));
         driver.manage().window().maximize();
