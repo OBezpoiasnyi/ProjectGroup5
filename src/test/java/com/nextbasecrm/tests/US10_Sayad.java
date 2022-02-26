@@ -21,28 +21,30 @@ public class US10_Sayad {
     @BeforeMethod
     public void setUpMethod() {
 
-        String userName = "hr15@cydeo.com";
-        String password = "UserUser";
+        //String userName = "marketing15@cydeo.com";
+        //String password = "UserUser";
 
         driver = WebDriverFactory.getDriver(ConfigurationReader.getProperty("browser"));
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get(ConfigurationReader.getProperty("env"));
 
-        driver.findElement(By.xpath("//input[@name='USER_LOGIN']")).sendKeys(userName);
-        driver.findElement(By.xpath("//input[@name='USER_PASSWORD']")).sendKeys(password);
+        //driver.findElement(By.xpath("//input[@name='USER_LOGIN'")).sendKeys(userName);
+        //driver.findElement(By.xpath("//input[@name='USER_PASSWORD']")).sendKeys(password);
 
 
     }
+
     @AfterMethod
     public void tearDown() {
         BrowserUtils.sleep(3);
-         driver.close();
+        driver.close();
     }
-
 
     @Test
     public void task1()  {
+        Username_Password.username3(driver);
+
         WebElement loginButton = driver.findElement(By.xpath("//input[@class='login-btn']"));
         loginButton.click();
         BrowserUtils.sleep(3);
@@ -64,13 +66,13 @@ public class US10_Sayad {
         System.out.println("taskDisplayed.isDisplayed() = " + taskDisplayed.isDisplayed());
     }
     @Test
-    public void task2() throws InterruptedException {
+    public void task2(){
 
-        Username_Password.username1(driver);
-        Thread.sleep(2000);
+        Username_Password.username3(driver);
 
         WebElement loginButton = driver.findElement(By.xpath("//input[@value='Log In']"));
         loginButton.click();
+        BrowserUtils.sleep(3);
 
         // Users click the TASK tab
         WebElement taskTab = driver.findElement(By.xpath("(//span[@class='feed-add-post-form-link'])[1]"));
@@ -85,8 +87,7 @@ public class US10_Sayad {
         sendButton.click();
 
         // Verify “The message title is not specified” warning message is displayed on the page
-        WebElement getMessage = driver.findElement(By.xpath("//div[@class='task-message-label error']"));
-        System.out.println("getMessage.isDisplayed() = " + getMessage.isDisplayed());
-
+        WebElement warningMessage = driver.findElement(By.xpath("//div[@class='task-message-label error']"));
+        System.out.println("warningMessage.isDisplayed() = " + warningMessage.isDisplayed());
     }
 }
