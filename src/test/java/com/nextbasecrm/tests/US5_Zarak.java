@@ -54,6 +54,7 @@ public class US5_Zarak {
 
         WebElement submitKey = driver.findElement(By.xpath("//button[@id='blog-submit-button-save']"));
         //submitKey.click();
+        submitKey.click();
 
         Thread.sleep(350);
         driver.close();
