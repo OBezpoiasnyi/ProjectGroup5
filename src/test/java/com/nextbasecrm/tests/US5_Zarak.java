@@ -31,6 +31,9 @@ public class US5_Zarak {
 
     @Test
     public void enterMessage() throws InterruptedException {
+
+        // TC #1: Have User log on, and enter a message under the message tab.
+
         driver.get("https://login1.nextbasecrm.com");
 
         WebElement inputUsername = driver.findElement(By.xpath("//input[@name='USER_LOGIN']"));
@@ -62,6 +65,9 @@ public class US5_Zarak {
 
     @Test
    public void messageWithoutContentErrorMessage() throws InterruptedException {
+
+        //TC #2: Have User log on, and submit a message without content
+        // User should see "The Message title is not specified" error message.
 
         driver.get("https://login1.nextbasecrm.com");
 
