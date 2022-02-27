@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -31,7 +32,7 @@ public class US9_Rabia {
     @Test
     public void moduleActivityStream(){
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        BrowserUtils.sleep(3);
 
         WebElement ActivityStreamButton = driver.findElement(By.linkText("Activity Stream"));
         ActivityStreamButton.click();
@@ -45,7 +46,8 @@ public class US9_Rabia {
 
     @Test
     public void moduleChatAndCalls(){
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        BrowserUtils.sleep(3);
 
         WebElement ChatAndCallsButton = driver.findElement(By.linkText("Chat and Calls"));
         ChatAndCallsButton.click();
@@ -60,7 +62,7 @@ public class US9_Rabia {
     @Test
     public void moduleWorkGroups(){
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        BrowserUtils.sleep(3);
 
         WebElement WorkGroupsButton = driver.findElement(By.linkText("Workgroups"));
         WorkGroupsButton.click();
@@ -74,7 +76,7 @@ public class US9_Rabia {
     @Test
     public void moduleDrive(){
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        BrowserUtils.sleep(3);
 
         WebElement DriveButton = driver.findElement(By.linkText("Drive"));
         DriveButton.click();
@@ -88,7 +90,7 @@ public class US9_Rabia {
     @Test
     public void moduleCalendar(){
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        BrowserUtils.sleep(3);
 
         WebElement CalendarButton = driver.findElement(By.linkText("Calendar"));
         CalendarButton.click();
@@ -102,7 +104,7 @@ public class US9_Rabia {
     @Test
     public void moduleContactCenter(){
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        BrowserUtils.sleep(3);
 
         WebElement ContactCenterButton = driver.findElement(By.linkText("Contact Center"));
         ContactCenterButton.click();
@@ -116,7 +118,7 @@ public class US9_Rabia {
     @Test
     public void moduleTimeAndReports(){
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        BrowserUtils.sleep(3);
 
         WebElement TimeAndReportsButton = driver.findElement(By.linkText("Time and Reports"));
         TimeAndReportsButton.click();
@@ -130,7 +132,7 @@ public class US9_Rabia {
     @Test
     public void moduleEmployees(){
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        BrowserUtils.sleep(3);
 
         WebElement EmployeesButton = driver.findElement(By.linkText("Employees"));
         EmployeesButton.click();
@@ -144,7 +146,7 @@ public class US9_Rabia {
     @Test
     public void moduleServices(){
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        BrowserUtils.sleep(3);
 
         WebElement ServicesButton = driver.findElement(By.linkText("Services"));
         ServicesButton.click();
@@ -158,7 +160,7 @@ public class US9_Rabia {
     @Test
     public void moduleCompany(){
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        BrowserUtils.sleep(3);
 
         WebElement CompanyButton = driver.findElement(By.linkText("Company"));
         CompanyButton.click();
@@ -169,4 +171,9 @@ public class US9_Rabia {
         Assert.assertEquals(actualTitle10,expectedTitle10);
     }
 
+    @AfterMethod
+    public void tearDown() {
+        BrowserUtils.sleep(3);
+        driver.close();
+    }
 }
