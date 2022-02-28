@@ -19,14 +19,14 @@ public class CRM_Utilities {
 
         WebElement inputUsername=driver.findElement(By.xpath("//input[@name='USER_LOGIN']"));
         inputUsername.sendKeys("helpdesk14@cybertekschool.com");
-
+        BrowserUtils.sleep(3);
         //helpdesk1@cybertekschool.com  UserUser
         //Helpdesk2@cybertekschool.com  UserUser
 
         //4. Enter valid password
         WebElement inputPassword=driver.findElement(By.xpath("//input[@name='USER_PASSWORD']"));
         inputPassword.sendKeys("UserUser");
-
+        BrowserUtils.sleep(3);
         //5. Click to Log In button
         WebElement loginButton=driver.findElement(By.xpath("//input[@value='Log In']"));
         loginButton.click();

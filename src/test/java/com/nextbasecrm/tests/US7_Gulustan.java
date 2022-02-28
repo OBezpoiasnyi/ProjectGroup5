@@ -20,25 +20,12 @@ public class US7_Gulustan {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get(ConfigurationReader.getProperty("env"));
-    }
-    @Test
-    public void test1(){  // Check if user3 can click "Remember me checkbox
-
-        Username_Password.username1(driver);
-
-        WebElement rememberME_button = driver.findElement(By.id("USER_REMEMBER"));
-        rememberME_button.click();
-
-        WebElement login = driver.findElement(By.xpath("//input[@class='login-btn']"));
-        login.click();
-
-        Assert.assertEquals(driver.findElement(By.xpath("//span[@class='menu-item-link-text']")).getText(), "Activity Stream");
 
     }
 
 
     @Test
-    public void test2() {
+    public void one_answer_for_a_poll() {
 
         CRM_Utilities.crm_login(driver);
 
@@ -79,7 +66,7 @@ public class US7_Gulustan {
         try {
             voteButton.click();
         } catch (StaleElementReferenceException e) {
-            Assert.assertTrue(voteButton.isSelected());
+            Assert.assertTrue(!(voteButton.isDisplayed()));
         }
 
 
