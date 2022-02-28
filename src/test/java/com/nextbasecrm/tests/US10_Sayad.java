@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
 public class US10_Sayad {
-    WebDriver driver;
+    public WebDriver driver;
 
     @BeforeMethod
     public void setUpMethod() {
@@ -25,65 +25,67 @@ public class US10_Sayad {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get(ConfigurationReader.getProperty("env"));
-
-        WebElement userName = driver.findElement(By.xpath("//input[@name='USER_LOGIN']"));
-        userName.sendKeys("hr15@cydeo.com"+Keys.ENTER);
-
-        WebElement password = driver.findElement(By.xpath("//input[@name='USER_PASSWORD']"));
-        password.sendKeys("UserUser"+Keys.ENTER);
-
-        WebElement loginButton = driver.findElement(By.xpath("//input[@class='login-btn']"));
-        loginButton.click();
-
-
-
     }
+
 
     @Test
     public void task1() {
-
-        WebElement loginButton = driver.findElement(By.xpath("//input[@class='login-btn']"));
-       loginButton.click();
+        CRM_Utilities.crm_login(driver);
 
         // Users click the TASK tab
         WebElement taskTab = driver.findElement(By.xpath("(//span[.='Task'])[1]"));
         taskTab.click();
+        BrowserUtils.sleep(3);
 
         // Users write task title and task content/message
-        WebElement thingsToDo = driver.findElement(By.xpath("//input[@name='ACTION[0][ARGUMENTS][data][TITLE]']"));
+        WebElement thingsToDo = driver.findElement(By.xpath("(//input[@placeholder='Things to do'])[1]"));
+        BrowserUtils.sleep(3);
+        thingsToDo.click();
         thingsToDo.sendKeys("Task has been created"+ Keys.ENTER);
 
 
         //   Users click the SEND button
         WebElement sendButton = driver.findElement(By.xpath("//button[@id='blog-submit-button-save']"));
         sendButton.click();
+        BrowserUtils.sleep(3);
 
         //Verify the task is displayed on the feed
-        WebElement taskDisplayed = driver.findElement(By.xpath("//div[@class='feed-create-task-popup-title']"));
-        System.out.println("taskDisplayed.isDisplayed() = " + taskDisplayed.isDisplayed());
+        WebElement result = driver.findElement(By.xpath("//div[@class='feed-create-task-popup-title']"));
+
+        String expectedTitle = "Task has been created";
+        String actualTitle = result.getText();
+        Assert.assertEquals(expectedTitle, actualTitle);
 
     }
     @Test
     public void task2(){
-
-        WebElement loginButton = driver.findElement(By.xpath("//input[@class='login-btn']"));
-        loginButton.click();
+        CRM_Utilities.crm_login(driver);
 
         // Users click the TASK tab
         WebElement taskTab = driver.findElement(By.xpath("(//span[@class='feed-add-post-form-link'])[1]"));
         taskTab.click();
+        BrowserUtils.sleep(3);
 
        // Users write task title and task content/message
         WebElement thingsToDo = driver.findElement(By.xpath("//input[@name='ACTION[0][ARGUMENTS][data][TITLE]']"));
         thingsToDo.sendKeys(""+ Keys.ENTER);
 
         // Users click the SEND button
+
         WebElement sendButton = driver.findElement(By.xpath("//button[@id='blog-submit-button-save']"));
+        BrowserUtils.sleep(3);
         sendButton.click();
 
         // Verify “The message title is not specified” warning message is displayed on the page
-        WebElement getMessage = driver.findElement(By.xpath("//div[@class='task-message-label error']"));
-        System.out.println("getMessage.isDisplayed() = " + getMessage.isDisplayed());
+        WebElement warningMessage = driver.findElement(By.xpath("//div[@class='task-message-label error']"));
+        BrowserUtils.sleep(3);
+        Assert.assertTrue(warningMessage.isDisplayed());
 
     }
+
+    @AfterMethod
+    public void tearDown() {
+        BrowserUtils.sleep(3);
+        //driver.close();
     }
+}
