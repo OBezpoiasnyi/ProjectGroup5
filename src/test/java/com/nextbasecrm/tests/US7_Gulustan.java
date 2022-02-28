@@ -1,14 +1,13 @@
 package com.nextbasecrm.tests;
 
 import com.nextbasecrm.utilities.*;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class US7_Gulustan {
@@ -16,67 +15,90 @@ public class US7_Gulustan {
     public WebDriver driver;
 
     @BeforeMethod
-    public void setUpMethod() {
-
+    public void setupMethod() {
         driver = WebDriverFactory.getDriver(ConfigurationReader.getProperty("browser"));
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get(ConfigurationReader.getProperty("env"));
+    }
+    @Test
+    public void test1(){  // Check if user3 can click "Remember me checkbox
 
+        Username_Password.username1(driver);
+
+        WebElement rememberME_button = driver.findElement(By.id("USER_REMEMBER"));
+        rememberME_button.click();
+
+        WebElement login = driver.findElement(By.xpath("//input[@class='login-btn']"));
+        login.click();
+
+        Assert.assertEquals(driver.findElement(By.xpath("//span[@class='menu-item-link-text']")).getText(), "Activity Stream");
 
     }
-
 
 
     @Test
-      public void crm_login_test(){
-        WebElement inputUsername = driver.findElement(By.xpath("//input[@name='USER_LOGIN']"));
-        inputUsername.sendKeys("hr14@cybertekschool.com");
+    public void test2() {
 
-        WebElement inputPassword = driver.findElement(By.xpath("//input[@name='USER_PASSWORD']"));
-        inputPassword.sendKeys("UserUser");
+        CRM_Utilities.crm_login(driver);
 
-        WebElement loginButton = driver.findElement(By.xpath("//input[@value='Log In']"));
-        loginButton.click();
-
-}
-
-        @Test
-                public void test1()  {
-            CRM_Utilities.crm_login(driver);
-
-            WebElement pollButton = driver.findElement(By.xpath("//span[.='Poll']/span"));
-            BrowserUtils.sleep(3);
-
-            pollButton.click();
-            BrowserUtils.sleep(3);
+        //Writing "Programming language" in the search box and finding existing poll
+        WebElement searchInput = driver.findElement(By.xpath("//input[@id='search-textbox-input']"));
+        searchInput.sendKeys("Programming Language-7" + Keys.ENTER);
 
 
-            WebElement clickOneAnswer=driver.findElement(By.xpath("(//span[@class='bx-vote-block-inp-substitute'])[1]"));
-            BrowserUtils.sleep(3);
+        //finding "vote" button, and after clicking the vote, finding the "vote again" button locator
+        WebElement voteAgainButton = driver.findElement(By.xpath("//input[@id='sessid']/..//button[.='Vote again'][1]"));
+        WebElement voteButton = driver.findElement(By.xpath("//input[@id='sessid']/..//button[.='Vote']"));
+        voteAgainButton.click();
 
-            clickOneAnswer.click();
-            BrowserUtils.sleep(3);
+        //Location java and python answer options locator for clicking
+        WebElement javaOption = driver.findElement(By.xpath("//li[@id='question1169']//label[.='Java']"));
+        WebElement pythonOption = driver.findElement(By.xpath("//li[@id='question1169']//label[.='Python']"));
 
-            WebElement clickVote=driver.findElement(By.xpath("(//button[@class='ui-btn ui-btn-lg ui-btn-primary'])[2]"));
-            BrowserUtils.sleep(3);
+        //Java and python locator was not able to answer isSelected() method,
+        // so I find other input locator option for java and python
+        // This locator able to answer isSelected() method
+        List<WebElement> IsSelectedOptions = driver.findElements(By.xpath("//input[@name='vote_radio_1169']/..//input"));
 
-            clickVote.click();
-            BrowserUtils.sleep(3);
+        //Java   value attribute value  =>2622
+        //Python value attribute value  =>2623
+
+        //Verifying one option is selected at a time by verifying if it matches the attribute in their locator
+        for (WebElement each : IsSelectedOptions) {
+             javaOption.click();
+          // pythonOption.click();
+            BrowserUtils.sleep(2);
+            if (each.getAttribute("value").equals("2622")) {
+                Assert.assertTrue(each.isSelected());
+            }
         }
 
 
-    @AfterMethod
-    public void  tearDown(){
-        BrowserUtils.sleep(3);
-        driver.close();
+        //User click vote button and see if it is selected
+        try {
+            voteButton.click();
+        } catch (StaleElementReferenceException e) {
+            Assert.assertTrue(voteButton.isSelected());
+        }
+
+
     }
 
-
-
-
-
-
-
+    @AfterMethod
+    public void tearDown() {
+        BrowserUtils.sleep(3);
+         driver.quit();
+    }
 
 }
+
+
+
+
+
+
+
+
+
+
