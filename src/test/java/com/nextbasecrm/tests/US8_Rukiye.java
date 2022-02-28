@@ -7,6 +7,7 @@ import com.nextbasecrm.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -27,6 +28,7 @@ public class US8_Rukiye {
 
     }
 
+    /*
     @Test
     public void crm_login_test() {
         WebElement inputUsername = driver.findElement(By.xpath("//input[@name='USER_LOGIN']"));
@@ -40,6 +42,7 @@ public class US8_Rukiye {
 
     }
 
+ */
     @Test
     public void chat_and_call_module() {
 
@@ -52,19 +55,19 @@ public class US8_Rukiye {
         BrowserUtils.sleep(5);
 
         WebElement messageIcon = driver.findElement(By.xpath("//div[@id='bx-desktop-tab-notify']"));
-        System.out.println("messageIcon.isDisplayed() = " + messageIcon.isDisplayed());
+        Assert.assertTrue(messageIcon.isDisplayed());
 
 
         WebElement notificationIcon = driver.findElement(By.xpath("//div[@class='bx-desktop-tab-icon bx-desktop-tab-icon-notify']"));
-        System.out.println("notificationIcon.isDisplayed() = " + notificationIcon.isDisplayed());
+        Assert.assertTrue(notificationIcon.isDisplayed());
 
 
         WebElement settingIcon = driver.findElement(By.xpath("//div[@class='bx-desktop-tab-icon bx-desktop-tab-icon-config']"));
-        System.out.println("settingIcon.isDisplayed() = " + settingIcon.isDisplayed());
+        Assert.assertTrue(messageIcon.isDisplayed());
 
 
         WebElement activityStreamIcon = driver.findElement(By.xpath("//div[@class='bx-desktop-tab-icon bx-desktop-tab-icon-im-lf']"));
-        System.out.println("activityStreamIcon.isDisplayed() = " + activityStreamIcon.isDisplayed());
+        Assert.assertTrue(activityStreamIcon.isDisplayed());
     }
 
     @AfterMethod
