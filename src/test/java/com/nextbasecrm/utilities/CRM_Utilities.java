@@ -29,7 +29,7 @@ public class CRM_Utilities {
         //4. Enter valid password
         WebElement inputPassword=driver.findElement(By.xpath("//input[@name='USER_PASSWORD']"));
         inputPassword.sendKeys("UserUser");
-        BrowserUtils.sleep(3);
+         BrowserUtils.sleep(3);
         //5. Click to Log In button
         WebElement loginButton=driver.findElement(By.xpath("//input[@value='Log In']"));
         loginButton.click();
