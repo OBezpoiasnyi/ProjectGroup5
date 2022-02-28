@@ -25,7 +25,7 @@ public class US7_Gulustan {
 
 
     @Test
-    public void test2() {
+    public void one_answer_for_a_poll() {
 
         CRM_Utilities.crm_login(driver);
 
