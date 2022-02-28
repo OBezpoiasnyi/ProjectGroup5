@@ -12,7 +12,7 @@ public class BrowserUtils {
 
         try {
             Thread.sleep(second);
-        }catch (InterruptedException e){
+        }catch(InterruptedException e){
 
         }
     }
