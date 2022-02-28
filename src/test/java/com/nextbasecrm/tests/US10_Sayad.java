@@ -86,6 +86,6 @@ public class US10_Sayad {
     @AfterMethod
     public void tearDown() {
         BrowserUtils.sleep(3);
-        //driver.close();
+        driver.close();
     }
 }
