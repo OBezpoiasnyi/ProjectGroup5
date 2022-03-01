@@ -1,5 +1,6 @@
 package com.nextbasecrm.tests;
 
+import com.nextbasecrm.utilities.CRM_Utilities;
 import com.nextbasecrm.utilities.ConfigurationReader;
 import com.nextbasecrm.utilities.WebDriverFactory;
 import org.openqa.selenium.*;
@@ -16,18 +17,18 @@ public class US14Cameron {
         driver = WebDriverFactory.getDriver(ConfigurationReader.getProperty("browser"));
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get("https://login1.nextbasecrm.com/stream/?login=yes");
+        driver.get(ConfigurationReader.getProperty("env"));
+        driver.findElement(By.name("USER_LOGIN")).sendKeys(ConfigurationReader.getProperty("username1"));
+        driver.findElement(By.name("USER_PASSWORD")).sendKeys(ConfigurationReader.getProperty("password")+Keys.ENTER);
+
     }
     @Test
     public void test(){
-        WebElement log=driver.findElement(By.xpath("//input[contains(@name,'LOG')]"));
-        log.sendKeys("helpdesk1@cybertekschool.com"+ Keys.TAB);
-        WebElement pass=driver.findElement(By.xpath("//input[contains(@name,'PASS')]"));
-        pass.sendKeys("UserUser"+Keys.ENTER);
-
+        // Scroll down to Desktop client sidebar
         JavascriptExecutor jse= (JavascriptExecutor) driver;
-
         jse.executeScript("scroll(0, 500)");
+
+
          WebElement Mac= driver.findElement(By.xpath("//span[.='Mac OS']"));
          WebElement Windows=driver.findElement(By.xpath("//span[.='Windows']"));
          WebElement Linux= driver.findElement(By.xpath("//span[.='Linux']"));
@@ -40,5 +41,9 @@ public class US14Cameron {
 
 
 
+    }
+
+    public void teardown(){
+        driver.close();
     }
 }
