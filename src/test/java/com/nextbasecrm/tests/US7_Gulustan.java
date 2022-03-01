@@ -27,13 +27,13 @@ public class US7_Gulustan {
     @Test
     public void one_answer_for_a_poll() {
 
-        CRM_Utilities.crm_login(driver);
+        CRM_Utilities.crm_login(driver,"helpdesk14@cybertekschool.com","UserUser" );
 
         //Writing "Programming language" in the search box and finding existing poll
         WebElement searchInput = driver.findElement(By.xpath("//input[@id='search-textbox-input']"));
         searchInput.sendKeys("programming123" + Keys.ENTER);
 
-
+        BrowserUtils.sleep(3);
         //finding "vote" button, and after clicking the vote, finding the "vote again" button locator
         WebElement voteAgainButton = driver.findElement(By.xpath("//input[@id='sessid']/..//button[.='Vote again']"));
         WebElement voteButton = driver.findElement(By.xpath("//input[@id='sessid']/..//button[.='Vote']"));
@@ -75,7 +75,7 @@ public class US7_Gulustan {
     @AfterMethod
     public void tearDown() {
         BrowserUtils.sleep(3);
-        // driver.quit();
+        driver.quit();
     }
 
 }
