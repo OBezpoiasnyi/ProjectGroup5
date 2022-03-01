@@ -31,32 +31,32 @@ public class US7_Gulustan {
 
         //Writing "Programming language" in the search box and finding existing poll
         WebElement searchInput = driver.findElement(By.xpath("//input[@id='search-textbox-input']"));
-        searchInput.sendKeys("Programming Language-7" + Keys.ENTER);
+        searchInput.sendKeys("programming123" + Keys.ENTER);
 
 
         //finding "vote" button, and after clicking the vote, finding the "vote again" button locator
-        WebElement voteAgainButton = driver.findElement(By.xpath("//input[@id='sessid']/..//button[.='Vote again'][1]"));
+        WebElement voteAgainButton = driver.findElement(By.xpath("//input[@id='sessid']/..//button[.='Vote again']"));
         WebElement voteButton = driver.findElement(By.xpath("//input[@id='sessid']/..//button[.='Vote']"));
         voteAgainButton.click();
 
         //Location java and python answer options locator for clicking
-        WebElement javaOption = driver.findElement(By.xpath("//li[@id='question1169']//label[.='Java']"));
-        WebElement pythonOption = driver.findElement(By.xpath("//li[@id='question1169']//label[.='Python']"));
+        WebElement javaOption = driver.findElement(By.xpath("//li[@id='question35']//label[.='Java']"));
+        WebElement pythonOption = driver.findElement(By.xpath("//li[@id='question35']//label[.='Python']"));
 
         //Java and python locator was not able to answer isSelected() method,
         // so I find other input locator option for java and python
         // This locator able to answer isSelected() method
-        List<WebElement> IsSelectedOptions = driver.findElements(By.xpath("//input[@name='vote_radio_1169']/..//input"));
+        List<WebElement> IsSelectedOptions = driver.findElements(By.xpath("//input[@name='vote_radio_35']/..//input"));
 
-        //Java   value attribute value  =>2622
-        //Python value attribute value  =>2623
+        //Java   value attribute value  =>75
+        //Python value attribute value  =>76
 
         //Verifying one option is selected at a time by verifying if it matches the attribute in their locator
         for (WebElement each : IsSelectedOptions) {
              javaOption.click();
           // pythonOption.click();
             BrowserUtils.sleep(2);
-            if (each.getAttribute("value").equals("2622")) {
+            if (each.getAttribute("value").equals("75")) {
                 Assert.assertTrue(each.isSelected());
             }
         }
@@ -75,7 +75,7 @@ public class US7_Gulustan {
     @AfterMethod
     public void tearDown() {
         BrowserUtils.sleep(3);
-         driver.quit();
+        // driver.quit();
     }
 
 }
