@@ -79,11 +79,13 @@ public class US9_Rabia {
 
         BrowserUtils.sleep(3);
 
-        WebElement DriveButton = driver.findElement(By.linkText("Drive"));
+        WebElement DriveButton = driver.findElement(By.xpath("(//span[@class='menu-item-link-text'])[5]"));
         DriveButton.click();
 
+        BrowserUtils.sleep(3);
+
         String actualTitle4 = driver.getTitle();
-        String expectedTitle4 = "Site map";
+        String expectedTitle4 = "My Drive";
 
         Assert.assertEquals(actualTitle4,expectedTitle4);
     }
@@ -97,7 +99,7 @@ public class US9_Rabia {
         CalendarButton.click();
 
         String actualTitle5 = driver.getTitle();
-        String expectedTitle5 = "Site map";
+        String expectedTitle5 = "Hr15 Cydeo: Calendar";
 
         Assert.assertEquals(actualTitle5,expectedTitle5);
     }
