@@ -13,35 +13,30 @@ import org.testng.annotations.Test;
     2. After clicking the logout button, the user should navigate back to the login page.*///testREQUIREMENTS
 public class US3_SM {
     public WebDriver driver;
-    @BeforeMethod public void setupLogin(){
+    @BeforeMethod public void setup_N_LogIn(){
         driver = WebDriverFactory.getDriver("chrome");
         driver.get("https://login1.nextbasecrm.com");
-        WebElement inputUsername = driver.findElement(By.xpath("//input[@name='USER_LOGIN']"));
-            inputUsername.sendKeys("marketing13@cybertekschool.com");
-        WebElement inputPassword = driver.findElement(By.xpath("//input[@name='USER_PASSWORD']"));
-            inputPassword.sendKeys("UserUser");
+        driver.findElement(By.xpath("//input[@name='USER_LOGIN']")).sendKeys("marketing13@cybertekschool.com");
+        driver.findElement(By.xpath("//input[@name='USER_PASSWORD']")).sendKeys("UserUser");
         driver.findElement(By.xpath("//input[@value='Log In']")).click();
-        BrowserUtils.sleep(1);
+            BrowserUtils.sleep(1);
     }
 
     @Test public void logOut2MainPg(){
-        //1.The “Log out” option should be displayed when the user clicks the user profile from the homepage.
-        WebElement userName = driver.findElement(By.id("user-name"));
-        userName.click();
-        BrowserUtils.sleep(3);
+        driver.findElement(By.id("user-name")).click();
+            BrowserUtils.sleep(3);
 
         WebElement myLogOut = driver.findElement(By.xpath("//span[@class='menu-popup-item-text'][.='Log out']"));
-        Assert.assertEquals(myLogOut.getText(),"Log out");
+        Assert.assertEquals(myLogOut.getText(),"Log out");      //#1
         myLogOut.click();
+            BrowserUtils.sleep(5);
 
-        //2. After clicking the logout button, the user should navigate back to the login page.
-
-
+        String logoutURL = driver.getCurrentUrl();
+        //Assert.assertEquals(logoutURL.getText());   //#2
     }
 
     @AfterMethod
     public void tearDown() {
-        //BrowserUtils.sleep(9);
         driver.close();
     }
 }
