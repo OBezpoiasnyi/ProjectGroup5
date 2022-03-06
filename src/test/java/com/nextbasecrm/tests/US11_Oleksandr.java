@@ -32,7 +32,7 @@ public class US11_Oleksandr {
     @AfterMethod
     public void tearDownMethod(){
 
-        driver.close();
+      driver.close();
 
     }
 
@@ -87,33 +87,17 @@ public class US11_Oleksandr {
         WebElement profileButton = driver.findElement(By.xpath("//span[. = 'My Profile']"));
         profileButton.click();
 
-//        ArrayList <String> navigationBarList = new ArrayList<>();
-//        navigationBarList.addAll(Arrays.asList("General", "Drive", "Tasks", "Calendar" , "Conversations"));
-//
-//
-//        List<WebElement> navList = driver.findElements(By.xpath("//div[@id = 'profile-menu-filter']"));
-//        System.out.println("navList.size() = " + navList.size());
-//        ArrayList<String> actualNavList = new ArrayList<>();
-//
-//        for (WebElement webElement : navList) {
-//
-//            System.out.println(webElement.getText());
-//            actualNavList.add(webElement.getText());
-//        }
-//        System.out.println("actualNavList = " + actualNavList);
-//        System.out.println(actualNavList.size());
-
-        String expectNavBar = "GeneralDriveTasksCalendarConversations";
+        ArrayList <String> expectNavBar = new ArrayList<>();
+        expectNavBar.addAll(Arrays.asList("General", "Drive", "Tasks", "Calendar" , "Conversations"));
 
 
-        WebElement navList = driver.findElement(By.xpath("//div[@id = 'profile-menu-filter']"));
-        String  actualNavList = navList.getText().replaceAll(" ", "");
+        List<WebElement> navList = driver.findElements(By.xpath("//div[@id = 'profile-menu-filter']/a"));
+        ArrayList<String> actualNavList = new ArrayList<>();
 
-        System.out.println("expectNavBar = " + expectNavBar);
-        System.out.println("actualNavList = " + actualNavList);
+        for (WebElement webElement : navList) {
+            actualNavList.add(webElement.getText());
+        }
 
-        //2. There should be five tabs on my profile page:
-        //       “General “Drive” “Tasks” “Calendar ” “conversations”
         Assert.assertEquals(expectNavBar, actualNavList, "There is not five tabs on my profile page");
 
 
